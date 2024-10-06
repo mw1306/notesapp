@@ -11,20 +11,12 @@ import {
   Grid,
   Divider,
 } from "@aws-amplify/ui-react";
-import { Amplify } from "aws-amplify";
+import { Amplify, Storage, API } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
-import { getUrl } from "aws-amplify/storage";
-import { uploadData } from "aws-amplify/storage";
-import { generateClient } from "aws-amplify/data";
 import outputs from "../amplify_outputs.json";
-/**
- * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
- */
+import KoalaRescueForm from "./KoalaRescueForm"; // import your new form component
 
 Amplify.configure(outputs);
-const client = generateClient({
-  authMode: "userPool",
-});
 
 export default function App() {
   const [notes, setNotes] = useState([]);
@@ -34,80 +26,75 @@ export default function App() {
   }, []);
 
   async function fetchNotes() {
-    const { data: notes } = await client.models.Note.list();
+    const { data: notes } = await API.get("yourApiName", "/notes");
     await Promise.all(
       notes.map(async (note) => {
         if (note.image) {
-          const linkToStorageFile = await getUrl({
-            path: ({ identityId }) => `media/${identityId}/${note.image}`,
-          });
-          console.log(linkToStorageFile.url);
-          note.image = linkToStorageFile.url;
+          const linkToStorageFile = await Storage.get(`media/${note.image}`);
+          note.image = linkToStorageFile;
         }
         return note;
       })
     );
-    console.log(notes);
     setNotes(notes);
   }
 
   async function createNote(event) {
     event.preventDefault();
     const form = new FormData(event.target);
-    console.log(form.get("image").name);
 
-    const { data: newNote } = await client.models.Note.create({
+    const newNote = {
       name: form.get("name"),
       description: form.get("description"),
       image: form.get("image").name,
-    });
+    };
 
-    console.log(newNote);
-    if (newNote.image)
-      if (newNote.image)
-        await uploadData({
-          path: ({ identityId }) => `media/${identityId}/${newNote.image}`,
+    const { data } = await API.post("yourApiName", "/notes", { body: newNote });
 
-          data: form.get("image"),
-        }).result;
+    if (newNote.image) {
+      await Storage.put(`media/${newNote.image}`, form.get("image"));
+    }
 
     fetchNotes();
     event.target.reset();
   }
 
-  async function deleteNote({ id }) {
-    const toBeDeletedNote = {
-      id: id,
-    };
-
-    const { data: deletedNote } = await client.models.Note.delete(
-      toBeDeletedNote
-    );
-    console.log(deletedNote);
-
+  async function deleteNote(id) {
+    await API.del("yourApiName", `/notes/${id}`);
     fetchNotes();
   }
 
-
-import { Flex, Heading, Button } from "@aws-amplify/ui-react";
-import KoalaRescueForm from "./KoalaRescueForm"; // import your new form component
-
-function NotesApp() {
   const createRescue = async (data) => {
     // Integrate this with your AWS Amplify backend to store rescue data
     console.log("Rescue data:", data);
   };
 
   return (
-    <Flex justifyContent="center" alignItems="center" direction="column">
-      <Heading level={1}>Koala Rescue Form</Heading>
-      <KoalaRescueForm createRescue={createRescue} />
-    </Flex>
-  );
-}
+    <Authenticator>
+      <Flex direction="column" justifyContent="center" alignItems="center">
+        <Heading level={1}>Koala Rescue Form</Heading>
+        <KoalaRescueForm createRescue={createRescue} />
 
-export default NotesApp;
+        <Heading level={2}>Notes</Heading>
+        <View as="form" onSubmit={createNote}>
+          <TextField name="name" placeholder="Note Name" />
+          <TextField name="description" placeholder="Note Description" />
+          <input type="file" name="image" />
+          <Button type="submit">Create Note</Button>
+        </View>
 
+        <Grid>
+          {notes.map((note) => (
+            <Flex key={note.id} direction="column">
+              <Text>{note.name}</Text>
+              <Text>{note.description}</Text>
+              {note.image && <Image src={note.image} alt={note.name} />}
+              <Button onClick={() => deleteNote(note.id)}>Delete</Button>
+              <Divider />
+            </Flex>
+          ))}
+        </Grid>
+      </Flex>
     </Authenticator>
   );
 }
