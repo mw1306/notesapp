@@ -88,7 +88,7 @@ export default function App() {
     fetchNotes();
   }
 
-  import React from "react";
+
 import { Flex, Heading, Button } from "@aws-amplify/ui-react";
 import KoalaRescueForm from "./KoalaRescueForm"; // import your new form component
 
