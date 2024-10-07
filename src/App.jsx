@@ -212,91 +212,102 @@ export default function App() {
               </Button>
             </Flex>
           </View>
-          <Divider />
-<Heading level={1}>FOK Rescuer Details</Heading>
-<View as="form" margin="3rem 0" onSubmit={createRescueNote}>
-  <Flex
-    direction="column"
-    justifyContent="center"
-    gap="2rem"
-    padding="2rem"
-  >
-    <TextField
-      name="rescuerA"
-      placeholder="Rescuer one"
-      label="Rescuer One"
-      labelHidden
-      variation="quiet"
-      required
-    />
-    <TextField
-      name="rescuerB"
-      placeholder="Rescuer Two"
-      label="Rescuer Two"
-      labelHidden
-      variation="quiet"
-      required
-    />
-    <TextField
-      name="rescuercomment"
-      placeholder="Rescue comments"
-      label="Rescuer Comments"
-      labelHidden
-      variation="quiet"
-      required
-    />
-    <TextField
-      name="outcome"
-      placeholder="Outcome"
-      label="Outcome"
-      labelHidden
-      variation="quiet"
-      required
-    />
-    <Button type="submit" variation="secondary">
-      Create Rescue request Note
-    </Button>
-  </Flex>
-</View>
-<Divider />
-<Heading level={2}>Current Notes</Heading>
-<Grid
-  margin="3rem 0"
-  autoFlow="column"
-  justifyContent="center"
-  gap="2rem"
-  alignContent="center"
->
-  {notes.map((note) => (
-    <Flex
-      key={note.id || note.name}
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      gap="2rem"
-      border="1px solid #ccc"
-      padding="2rem"
-      borderRadius="5%"
-      className="box"
-    >
-      <View>
-        <Heading level="3">{note.name}</Heading>
-      </View>
-      <Text fontStyle="italic">{note.description}</Text>
-      {note.image && (
-        <Image
-          src={note.image}
-          alt={`visual aid for ${note.name}`} // Fixed reference here to note.name
-          style={{ width: 400 }}
-        />
+
+          <Divider>
+          <Heading level={1}>FOK Rescuer Details</Heading>
+          <View as="form" margin="3rem 0" onSubmit={createNote}>
+            <Flex
+              direction="column"
+              justifyContent="center"
+              gap="2rem"
+              padding="2rem"
+            >
+          <TextField
+                name= "rescuerA"
+                placeholder="Rescuer one"
+                label="Rescuer One"
+                labelHidden
+                variation="quiet"
+                required
+              />
+
+     <TextField
+                name= "rescuerB"
+                placeholder="Rescuer Two"
+                label="Rescuer Two"
+                labelHidden
+                variation="quiet"
+                required
+              />         
+
+<TextField
+                name= "rescuercomment"
+                placeholder="Rescue commennts"
+                label="Rescuer Comments"
+                labelHidden
+                variation="quiet"
+                required
+              />
+<TextField
+                name= "outcome"
+                placeholder="Outcome"
+                label="Outcome"
+                labelHidden
+                variation="quiet"
+                required
+              />
+              <Button type="submit" variation="secondary">
+                Create Rescue request Note
+              </Button>
+              </Flex>
+          </Divider>
+
+          <Divider>
+          <Heading level={2}>Current Notes</Heading>
+          <Grid
+            margin="3rem 0"
+            autoFlow="column"
+            justifyContent="center"
+            gap="2rem"
+            alignContent="center"
+          >
+            {notes.map((note) => (
+              <Flex
+                key={note.id || note.name}
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+                gap="2rem"
+                border="1px solid #ccc"
+                padding="2rem"
+                borderRadius="5%"
+                className="box"
+              >
+                <View>
+                  <Heading level="3">{note.name}</Heading>
+                </View>
+                <Text fontStyle="italic">{note.description}</Text>
+                {note.image && (
+                  <Image
+                    src={note.image}
+                    alt={`visual aid for ${notes.name}`}
+                    style={{ width: 400 }}
+                  />
+                )}
+                <Button
+                  variation="destructive"
+                  onClick={() => deleteNote(note)}
+                >
+                  Delete note
+                </Button>
+              </Flex>
+              </divider>
+              
+            ))}
+          </Grid>
+          <Button onClick={signOut}>Sign Out</Button>
+        </Flex>
       )}
-      <Button
-        variation="destructive"
-        onClick={() => deleteNote(note)}
-      >
-        Delete note
-      </Button>
-    </Flex>
-  ))}
-</Grid>
-<Button onClick={signOut}>Sign Out</Button>
+    </Authenticator>
+  );
+}
