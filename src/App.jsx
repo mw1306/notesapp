@@ -99,7 +99,7 @@ export default function App() {
           width="70%"
           margin="0 auto"
         >
-          <Heading level={1}>My Notes App</Heading>
+          <Heading level={1}>FOK Hotliners App</Heading>
           <View as="form" margin="3rem 0" onSubmit={createNote}>
             <Flex
               direction="column"
@@ -195,9 +195,35 @@ export default function App() {
                 required
               />
 
-<TextField
+
+
+
+
+              <View
+                name="image"
+                as="input"
+                type="file"
+                alignSelf={"end"}
+                accept="image/png, image/jpeg"
+              />
+
+              <Button type="submit" variation="primary">
+                Create Rescue request Note
+              </Button>
+            </Flex>
+          </View>
+          <Divider>
+          <Heading level={1}>FOK Hotliners App</Heading>
+          <View as="form" margin="3rem 0" onSubmit={createNote}>
+            <Flex
+              direction="column"
+              justifyContent="center"
+              gap="2rem"
+              padding="2rem"
+            >
+          <TextField
                 name= "rescuerA"
-                placeholder="Rescue one"
+                placeholder="Rescuer one"
                 label="Rescuer One"
                 labelHidden
                 variation="quiet"
@@ -206,7 +232,7 @@ export default function App() {
 
      <TextField
                 name= "rescuerB"
-                placeholder="Rescue Two"
+                placeholder="Rescuer Two"
                 label="Rescuer Two"
                 labelHidden
                 variation="quiet"
@@ -229,22 +255,11 @@ export default function App() {
                 variation="quiet"
                 required
               />
-
-
-
-              <View
-                name="image"
-                as="input"
-                type="file"
-                alignSelf={"end"}
-                accept="image/png, image/jpeg"
-              />
-
-              <Button type="submit" variation="primary">
-                Create Note
+              <Button type="submit" variation="secondary">
+                Create Rescue request Note
               </Button>
-            </Flex>
-          </View>
+              </Flex>
+          </Divider>
           <Divider />
           <Heading level={2}>Current Notes</Heading>
           <Grid
