@@ -147,6 +147,29 @@ export default function App() {
                 variation="quiet"
                 required
               />
+
+
+
+    <TextField
+                name="gpsLatitude"
+                placeholder="Approx Latitude"
+                label="Approx Latitude"
+                labelHidden
+                variation="quiet"
+                required
+              />
+
+<TextField
+                name="gpsLongitude"
+                placeholder="Approx Longitude"
+                label="Approx Longitude"
+                labelHidden
+                variation="quiet"
+                required
+              />
+
+
+
               <TextField
                 name="koalalocation"
                 placeholder="Koala Location"
@@ -171,6 +194,42 @@ export default function App() {
                 variation="quiet"
                 required
               />
+
+<TextField
+                name= "rescuerA"
+                placeholder="Rescue one"
+                label="Rescuer One"
+                labelHidden
+                variation="quiet"
+                required
+              />
+
+     <TextField
+                name= "rescuerB"
+                placeholder="Rescue Two"
+                label="Rescuer Two"
+                labelHidden
+                variation="quiet"
+                required
+              />         
+
+<TextField
+                name= "rescuercomment"
+                placeholder="Rescue commennts"
+                label="Rescuer Comments"
+                labelHidden
+                variation="quiet"
+                required
+              />
+<TextField
+                name= "outcome"
+                placeholder="Outcome"
+                label="Outcome"
+                labelHidden
+                variation="quiet"
+                required
+              />
+
 
 
               <View
