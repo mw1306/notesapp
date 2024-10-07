@@ -208,20 +208,12 @@ export default function App() {
               />
 
               <Button type="submit" variation="primary">
-                Create Rescue request Note
+                Create Note
               </Button>
             </Flex>
           </View>
-
           <Divider>
-          <Heading level={1}>FOK Rescuer Details</Heading>
-          <View as="form" margin="3rem 0" onSubmit={createNote}>
-            <Flex
-              direction="column"
-              justifyContent="center"
-              gap="2rem"
-              padding="2rem"
-            >
+            
           <TextField
                 name= "rescuerA"
                 placeholder="Rescuer one"
@@ -256,13 +248,8 @@ export default function App() {
                 variation="quiet"
                 required
               />
-              <Button type="submit" variation="secondary">
-                Create Rescue request Note
-              </Button>
-              </Flex>
           </Divider>
-
-          <Divider>
+          <Divider />
           <Heading level={2}>Current Notes</Heading>
           <Grid
             margin="3rem 0"
@@ -301,8 +288,6 @@ export default function App() {
                   Delete note
                 </Button>
               </Flex>
-              </divider>
-              
             ))}
           </Grid>
           <Button onClick={signOut}>Sign Out</Button>
