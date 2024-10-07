@@ -195,26 +195,7 @@ export default function App() {
                 required
               />
 
-
-
-
-
-              <View
-                name="image"
-                as="input"
-                type="file"
-                alignSelf={"end"}
-                accept="image/png, image/jpeg"
-              />
-
-              <Button type="submit" variation="primary">
-                Create Note
-              </Button>
-            </Flex>
-          </View>
-          <Divider>
-            
-          <TextField
+<TextField
                 name= "rescuerA"
                 placeholder="Rescuer one"
                 label="Rescuer One"
@@ -248,7 +229,22 @@ export default function App() {
                 variation="quiet"
                 required
               />
-          </Divider>
+
+
+
+              <View
+                name="image"
+                as="input"
+                type="file"
+                alignSelf={"end"}
+                accept="image/png, image/jpeg"
+              />
+
+              <Button type="submit" variation="primary">
+                Create Note
+              </Button>
+            </Flex>
+          </View>
           <Divider />
           <Heading level={2}>Current Notes</Heading>
           <Grid
