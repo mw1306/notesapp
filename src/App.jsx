@@ -212,8 +212,9 @@ export default function App() {
               </Button>
             </Flex>
           </View>
+
           <Divider>
-          <Heading level={1}>FOK Hotliners App</Heading>
+          <Heading level={1}>FOK Rescuer Details</Heading>
           <View as="form" margin="3rem 0" onSubmit={createNote}>
             <Flex
               direction="column"
@@ -260,7 +261,8 @@ export default function App() {
               </Button>
               </Flex>
           </Divider>
-          <Divider />
+
+          <Divider>
           <Heading level={2}>Current Notes</Heading>
           <Grid
             margin="3rem 0"
@@ -299,6 +301,9 @@ export default function App() {
                   Delete note
                 </Button>
               </Flex>
+              </divider>
+
+              
             ))}
           </Grid>
           <Button onClick={signOut}>Sign Out</Button>
