@@ -99,7 +99,7 @@ export default function App() {
           width="70%"
           margin="0 auto"
         >
-          <Heading level={1}>FOK Hotliners App</Heading>
+          <Heading level={1}>My Notes App</Heading>
           <View as="form" margin="3rem 0" onSubmit={createNote}>
             <Flex
               direction="column"
@@ -108,130 +108,21 @@ export default function App() {
               padding="2rem"
             >
               <TextField
-                name="hotlinerName"
-                placeholder="hotliner Name"
-                label="Hotlier Name"
+                name="name"
+                placeholder="Note Name"
+                label="Note Name"
                 labelHidden
                 variation="quiet"
                 required
               />
               <TextField
-                name="shift"
-                placeholder="Day or Night"
-                label="Shift"
+                name="description"
+                placeholder="Note Description"
+                label="Note Description"
                 labelHidden
                 variation="quiet"
                 required
               />
-              <TextField
-                name="mopname"
-                placeholder="MOP Full Name"
-                label="MOP Full Name"
-                labelHidden
-                variation="quiet"
-                required
-              />
-<TextField
-                name="mopphone"
-                placeholder="MOP Phone"
-                label="MOP Phone"
-                labelHidden
-                variation="quiet"
-                required
-              />
-<TextField
-                name="koalaaddress"
-                placeholder="Koala Address"
-                label="Koala Address"
-                labelHidden
-                variation="quiet"
-                required
-              />
-
-
-
-    <TextField
-                name="gpsLatitude"
-                placeholder="Approx Latitude"
-                label="Approx Latitude"
-                labelHidden
-                variation="quiet"
-                required
-              />
-
-<TextField
-                name="gpsLongitude"
-                placeholder="Approx Longitude"
-                label="Approx Longitude"
-                labelHidden
-                variation="quiet"
-                required
-              />
-
-
-
-              <TextField
-                name="koalalocation"
-                placeholder="Koala Location"
-                label="Koala location"
-                labelHidden
-                variation="quiet"
-                required
-              />
-<TextField
-                name="rescuereason"
-                placeholder="Reason for rescue"
-                label="Rescue Reason"
-                labelHidden
-                variation="quiet"
-                required
-              />
-<TextField
-                name="rescueother"
-                placeholder="Rescue other notes"
-                label="Rescue Other"
-                labelHidden
-                variation="quiet"
-                required
-              />
-
-<TextField
-                name= "rescuerA"
-                placeholder="Rescuer one"
-                label="Rescuer One"
-                labelHidden
-                variation="quiet"
-                required
-              />
-
-     <TextField
-                name= "rescuerB"
-                placeholder="Rescuer Two"
-                label="Rescuer Two"
-                labelHidden
-                variation="quiet"
-                required
-              />         
-
-<TextField
-                name= "rescuercomment"
-                placeholder="Rescue commennts"
-                label="Rescuer Comments"
-                labelHidden
-                variation="quiet"
-                required
-              />
-<TextField
-                name= "outcome"
-                placeholder="Outcome"
-                label="Outcome"
-                labelHidden
-                variation="quiet"
-                required
-              />
-
-
-
               <View
                 name="image"
                 as="input"
